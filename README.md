@@ -54,7 +54,7 @@
 | Field | Tipe Data | Keterangan |
 | ----------- | ----------- | ----------- |
 | id | INT (AUTO\_INCREMENT) | Primary key |
-| nama\_divisi | String(100) | Nama divisi |
+| nama\_divisi | STRING(100) | Nama divisi |
 | created\_at | TIMESTAMP |  Waktu dibuat |
 | updated\_at | TIMESTAMP | Waktu update terakhir |
 
@@ -64,9 +64,9 @@
 | ----------- | ----------- | ----------- |
 | id | INT (PK) | Primary key |
 | user\_id | INT (FK) | Foreign key Relasi ke `users.id` (login & role) |
-| nama\_lengkap | String(100) | Nama anggota |
+| nama\_lengkap | STRING(100) | Nama anggota |
 | alamat | TEXT | Alamat anggota |
-| no\_hp | String(20)  | Nomor telepon |
+| no\_hp | STRING(20)  | Nomor telepon |
 | divisi\_id | INT (FK) | Foreign key Relasi ke `divisi.id` (anggota tergabung ke) |
 | created\_at | TIMESTAMP | Waktu dibuat |
 | updated\_at | TIMESTAMP | Waktu update terakhir |
