@@ -44,7 +44,7 @@
 | ----------- | ------------- | ---------- |
 | id | INT (AUTO\_INCREMENT) | Primary key |
 | username | VARCHAR(50) | Nama pengguna |
-| password | VARCHAR(255) | Password (sudah di-hash) |
+| password | VARCHAR(10) | Password |
 | role | ENUM('admin', 'ketua', 'anggota') | Jenis peran |
 | created\_at | TIMESTAMP | Waktu dibuat |
 | updated\_at | TIMESTAMP | Waktu update terakhir |
