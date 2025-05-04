@@ -43,8 +43,8 @@
 | Field | Tipe Data | Keterangan |
 | ----------- | ------------- | ---------- |
 | id | INT (AUTO\_INCREMENT) | Primary key |
-| username | String(50) | Nama pengguna |
-| password | String(255) | Password |
+| username | STRING(50) | Nama pengguna |
+| password | STRING(255) | Password |
 | role | ENUM('admin', 'ketua', 'anggota') | Jenis peran |
 | created\_at | TIMESTAMP | Waktu dibuat |
 | updated\_at | TIMESTAMP | Waktu update terakhir |
