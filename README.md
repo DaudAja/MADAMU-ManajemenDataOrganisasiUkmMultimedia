@@ -44,6 +44,7 @@
 | ----------- | ------------- | ---------- |
 | id | INT (AUTO\_INCREMENT) | Primary key |
 | username | STRING(25) | Nama pengguna |
+| email | STRING | email pengguna |
 | password | STRING | Password |
 | role | ENUM('admin', 'ketua', 'anggota') | Jenis peran |
 | created\_at | TIMESTAMP | Waktu dibuat |
