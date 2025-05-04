@@ -43,8 +43,8 @@
 | Field | Tipe Data | Keterangan |
 | ----------- | ------------- | ---------- |
 | id | INT (AUTO\_INCREMENT) | Primary key |
-| username | VARCHAR(50) | Nama pengguna |
-| password | VARCHAR(10) | Password |
+| username | String(50) | Nama pengguna |
+| password | String(255) | Password |
 | role | ENUM('admin', 'ketua', 'anggota') | Jenis peran |
 | created\_at | TIMESTAMP | Waktu dibuat |
 | updated\_at | TIMESTAMP | Waktu update terakhir |
@@ -54,7 +54,7 @@
 | Field | Tipe Data | Keterangan |
 | ----------- | ----------- | ----------- |
 | id | INT (AUTO\_INCREMENT) | Primary key |
-| nama\_divisi | VARCHAR(100) | Nama divisi |
+| nama\_divisi | String(100) | Nama divisi |
 | created\_at | TIMESTAMP |  Waktu dibuat |
 | updated\_at | TIMESTAMP | Waktu update terakhir |
 
@@ -64,9 +64,9 @@
 | ----------- | ----------- | ----------- |
 | id | INT (PK) | Primary key |
 | user\_id | INT (FK) | Foreign key Relasi ke `users.id` (login & role) |
-| nama\_lengkap | VARCHAR(100) | Nama anggota |
+| nama\_lengkap | String(100) | Nama anggota |
 | alamat | TEXT | Alamat anggota |
-| no\_hp | VARCHAR(20)  | Nomor telepon |
+| no\_hp | String(20)  | Nomor telepon |
 | divisi\_id | INT (FK) | Foreign key Relasi ke `divisi.id` (anggota tergabung ke) |
 | created\_at | TIMESTAMP | Waktu dibuat |
 | updated\_at | TIMESTAMP | Waktu update terakhir |
