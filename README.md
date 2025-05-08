@@ -73,9 +73,34 @@
 | updated\_at | TIMESTAMP | Waktu update terakhir |
 
 
+### 4. Tabel ```{kegiatan}```
+| Field | Tipe Data | Keterangan |
+| ----------- | ----------- | ----------- |
+| id | INT (PK) | Primary key |
+| divisi\_id | INT (FK) | Foreign key Relasi ke `divisi.id` |
+| nama\_kegiatan | STRING(100) | Nama kegiatan |
+| deskripsi | TEXT | penjelasan singkat |
+| tanggal| DATE | tanggal kegiatan |
+| lokasi | STRING(100) | lokasi kegiatan |
+| created\_at | TIMESTAMP | Waktu dibuat |
+| updated\_at | TIMESTAMP | Waktu update terakhir |
+
+
+### 5. Tabel ```{anggota_kegiatan}```
+| Field | Tipe Data | Keterangan |
+| ----------- | ----------- | ----------- |
+| id | INT (PK) | Primary key |
+| anggota\_id | INT (FK) | Foreign key Relasi ke `anggota.id` |
+| kegiatan\_id | INT (FK) | Foreign key Relasi ke `kegiatan.id` |
+| status_kehadiran | ENUM('Hadir','Izin','Alpha') | kehadiran |
+| catatan | TEXT | Opsional (misalnya izin) |
+| created\_at | TIMESTAMP | Waktu dibuat |
+| updated\_at | TIMESTAMP | Waktu update terakhir |
+
 ---
 ## Jenis relasi dan tabel yang berelasi
 | Tabel Asal | Tabel Tujuan | Jenis Relasi | Keterangan |
 | ----------- | ----------- | ----------- | ----------- |
 | `anggota`  | `users` | One to One | satu anggota hanya memiliki satu users (akun login)
 | `divisi` | `anggota` | One to Many | Satu divisi punya banyak anggota 
+| `anggota` | `kegiatan` | Many to Many(Melalui tabel pivot `anggota_kegiatan`) | banyak anggota punya banyak kegiatan 
