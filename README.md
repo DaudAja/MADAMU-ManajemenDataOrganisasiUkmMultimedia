@@ -34,7 +34,6 @@
 | ----------- | ----------- |
 | Lihat Profil Sendiri | Data pribadi seperti nama, alamat, no HP, divisi |
 | Edit Profil Sendiri | Update nama, alamat, no HP (tidak bisa ganti divisi) |
-| Ubah Password Sendiri | Ubah password akun sendiri untuk keamanan |
 
 ---
 ## Tabel-tabel database beserta field dan tipe datanya
