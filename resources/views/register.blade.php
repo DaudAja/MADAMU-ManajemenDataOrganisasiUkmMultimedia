@@ -17,6 +17,7 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="assets/images/favicon.ico" />
 </head>
+<h1></h1>
 <body>
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper full-page-wrapper">
