@@ -1,0 +1,14 @@
+<svg width="220" height="60" viewBox="0 0 220 60" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <!-- Folder Top Tab -->
+    <path d="M14 20h26l5 6h-31z" fill="#ffffff" stroke="#ffffff" stroke-width="1"></path>
+
+    <!-- Folder Body -->
+    <rect x="10" y="26" width="45" height="28" rx="4" ry="4" fill="#ffffff" stroke="#ffffff" stroke-width="1.5"></rect>
+
+    <!-- Text: MADAMU -->
+    <text x="70" y="45" font-family="Segoe UI, sans-serif" font-size="26" fill="#ffffff" font-weight="bold">
+      MADAMU
+    </text>
+  </g>
+</svg>

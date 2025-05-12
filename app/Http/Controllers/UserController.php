@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -12,7 +12,6 @@ class UserController extends Controller
     {
         $user = User::all();
         return view('lihatUser', compact('user'));
-
     }
 
     public function create()
@@ -24,7 +23,7 @@ class UserController extends Controller
     {
         $request['password'] = Hash::make($request->password);
         User::create($request->all());
-        return redirect()->route('user.index');
+        return redirect()->route('lihatUser');
     }
 
     public function show()
@@ -40,26 +39,27 @@ class UserController extends Controller
 
     public function update(Request $request, string $id)
     {
-        if ($request->fillled('password')) {
-            $request['password'] = Hash::make($request->password);
-        }
         $request->validate([
-            'username' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'role' => 'required|in:admin,ketua,anggota'
-        ]);
+        'username' => 'required',
+        'email' => 'required|email',
+        'password' => 'nullable|string|min:6',
+        'role' => 'required|in:admin,ketua,anggota'
+    ]);
 
         $user = User::findOrFail($id);
         $user->username = $request->username;
         $user->email = $request->email;
-        $user->password = bcrypt($request->password);
+
+        if ($request->filled('password')) {
+        $user->password = Hash::make($request->password);
+        }
+
         $user->role = $request->role;
         $user->save();
 
-        return redirect()->route('user.index')->with('berhasil','Data berhasil di perbarui');
-
+        return redirect()->route('user.index')->with('berhasil', 'Data berhasil diperbarui');
     }
+
 
     public function destroy(string $id)
     {

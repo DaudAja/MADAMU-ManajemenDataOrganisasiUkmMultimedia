@@ -5,16 +5,14 @@
 
 <div class="content-wrapper">
   <div class="col-xl-6 grid-margin stretch-card flex-column">
-            <h5 class="mb-2 text-titlecase mb-4">Tambah Pengguna</h5>
+            <h4 class="mb-2 text-titlecase mb-2">Tambah Pengguna</h4>
         </div>
+
         <div class="row">
             <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Form Tambah Pengguna</h4>
-                  <p class="card-description">
-                    Basic form elements
-                  </p>
 
                   <form class="forms-sample" action="{{ route('user.store') }}" method="POST">
                   @csrf
@@ -52,4 +50,5 @@
               </div>
             </div>
           </div>
+          
 @endsection

@@ -12,7 +12,6 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Form Edit Pengguna</h4>
-          <p class="card-description">Basic form elements</p>
 
           <form class="forms-sample" action="{{ route('user.update', $user->id) }}" method="POST">
             @csrf

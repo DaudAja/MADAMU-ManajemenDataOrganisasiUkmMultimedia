@@ -4,14 +4,14 @@
 <div class="content-wrapper">
     <div class="row">
         <div class="col-xl-6 grid-margin stretch-card flex-column">
-            <h5 class="mb-2 text-titlecase mb-4">User</h5>
+            <h4 class="mb-2 text-titlecase mb-2">Pengguna</h4>
         </div>
     </div>
 
     <div class="row mb-3">
-        <div class="col-md-12 d-flex justify-content-end">
+        <div class="col-md-12 d-flex justify-content-start">
             <a href="{{ route('user.create') }}" class="btn btn-outline-success">
-                <i class="typcn typcn-plus"></i> Tambah User
+                <i class="typcn typcn-plus"></i> Tambah Pengguna
             </a>
         </div>
     </div>

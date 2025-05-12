@@ -24241,6 +24241,13 @@ dl li {
   margin-right: 0.25rem;
   margin-left: 0;
 }
+.profile-pic {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item.nav-profile img {
   width: 2.5rem;
   height: 2.5rem;
@@ -24962,6 +24969,22 @@ dl li {
     line-height: 1.8;
     box-shadow: 4px 0px 7px 0px rgba(182, 185, 189, 0.25);
   }
+  .fixed-sidebar {
+  position: fixed;
+  top: 10vh;
+  left: 0vh;
+  height: 200vh;
+  overflow-y: auto;
+  z-index: 100;
+  background-color: #fff; /* atau warna sidebar kamu */
+}
+
+
+/* Tambahkan ini agar konten utama tidak tertutup sidebar */
+.main-panel {
+  margin-left: 240px; /* sesuaikan dengan lebar sidebar */
+}
+
   .sidebar-dark.sidebar-icon-only .sidebar .nav .nav-item.hover-open .nav-link .menu-title {
     background: #282f3a;
   }

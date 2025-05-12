@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
+
     public function login()
     {
-        return view('login');
+        return view('Autentikasi.login');
     }
 
     public function authenticate(Request $request)
@@ -31,4 +32,5 @@ class AuthController extends Controller
             'email' => 'Terjadi kesalahan, periksa kembali email atau password anda.',
         ])->onlyInput('email');
     }
+
 }

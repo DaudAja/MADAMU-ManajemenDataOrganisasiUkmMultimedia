@@ -1,10 +1,9 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
+<nav class="sidebar sidebar-offcanvas fixed-sidebar" id="sidebar">
   <ul class="nav">
     <li class="nav-item">
       <a class="nav-link" href="{{ url('dashboard') }}">
         <i class="typcn typcn-device-desktop menu-icon"></i>
         <span class="menu-title">Dashboard</span>
-        <div class="badge badge-danger">new</div>
       </a>
     </li>
 
@@ -13,52 +12,45 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ url('user') }}">
           <i class="typcn typcn-user-outline menu-icon"></i>
-          <span>Pengguna</span>
+          <span class="menu-title">Manajemen Pengguna</span>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{{ url('anggota') }}">
-          <i class="typcn typcn-document-text menu-icon"></i>
-          <span>Anggota</span>
+          <i class="typcn typcn-group menu-icon"></i>
+          <span class="menu-title">Manajemen Anggota</span>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{{ url('divisi') }}">
-          <i class="typcn typcn-film menu-icon"></i>
-          <span>Divisi</span>
+          <i class="typcn typcn-briefcase menu-icon"></i>
+          <span class="menu-title">Manajemen Divisi</span>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{{ url('kegiatan') }}">
-          <i class="typcn typcn-chart-pie-outline menu-icon"></i>
-          <span class="menu-title">Kegiatan</span>
+          <i class="typcn typcn-calendar-outline menu-icon"></i>
+          <span class="menu-title">Manajemen Kegiatan</span>
         </a>
       </li>
-
-      {{-- <li class="nav-item">
-        <a class="nav-link" href="{{ url('AnggotaKegiatan') }}">
-          <i class="typcn typcn-th-small-outline menu-icon"></i>
-          <span class="menu-title">Anggota Kegiatan</span>
-        </a>
-      </li> --}}
     @endif
 
-    {{-- KETUA --}}
+    {{-- KETUA DIVISI --}}
     @if(Auth::user()->role === 'ketua')
       <li class="nav-item">
         <a class="nav-link" href="{{ url('anggota') }}">
-          <i class="typcn typcn-document-text menu-icon"></i>
-          <span>Anggota Divisi</span>
+          <i class="typcn typcn-group menu-icon"></i>
+          <span class="menu-title">Anggota Divisi</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('divisi') }}">
-          <i class="typcn typcn-film menu-icon"></i>
-          <span>Divisi Saya</span>
+        <a class="nav-link" href="{{ url('kegiatan') }}">
+          <i class="typcn typcn-calendar-outline menu-icon"></i>
+          <span class="menu-title">Kegiatan Divisi</span>
         </a>
       </li>
     @endif
@@ -66,26 +58,34 @@
     {{-- ANGGOTA --}}
     @if(Auth::user()->role === 'anggota')
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('divisi') }}">
-          <i class="typcn typcn-film menu-icon"></i>
-          <span>Divisi</span>
+        <a class="nav-link" href="{{ url('profil') }}">
+          <i class="typcn typcn-user menu-icon"></i>
+          <span class="menu-title">Data Saya</span>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{{ url('kegiatan') }}">
-          <i class="typcn typcn-chart-pie-outline menu-icon"></i>
+          <i class="typcn typcn-calendar-outline menu-icon"></i>
           <span class="menu-title">Kegiatan</span>
         </a>
       </li>
     @endif
 
-    {{-- Logout --}}
+    {{-- UMUM - LOGOUT --}}
     <li class="nav-item">
       <a class="nav-link" href="{{ url('/login') }}">
-        <i class="typcn typcn-mortar-board menu-icon"></i>
+        <i class="typcn typcn-power-outline menu-icon"></i>
         <span class="menu-title">Logout</span>
       </a>
     </li>
+
+    {{-- ROLE INFO --}}
+    <li class="nav-item mt-auto" style="padding: 1rem; font-size: 0.9rem; color: #6c757d;">
+        <i class="nav-link">
+            <span>login sebagai {{ ucfirst(Auth::user()->role) }}</span>
+        </i>
+    </li>
+
   </ul>
 </nav>

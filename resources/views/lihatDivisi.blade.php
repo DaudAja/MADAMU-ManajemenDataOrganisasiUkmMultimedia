@@ -8,6 +8,14 @@
         </div>
     </div>
 
+    <div class="row mb-3">
+        <div class="col-md-12 d-flex justify-content-start">
+            <a href="{{ route('divisi.create') }}" class="btn btn-outline-success">
+                <i class="typcn typcn-plus"></i> Tambah Divisi
+            </a>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -27,19 +35,18 @@
                                     <td>{{ $ds->nama_divisi }}</td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <a href=" "
+                                            <a href="{{ route('divisi.edit', $ds->id) }}"
                                                class="btn btn-success btn-sm btn-icon-text me-3">
                                                 Edit
                                                 <i class="typcn typcn-edit btn-icon-append"></i>
                                             </a>
-
-                                            <form action=" "
+                                            <form action="{{ route('divisi.destroy', $ds->id) }}"
                                                   method="POST"
                                                   onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm btn-icon-text">
-                                                    Delete
+                                                    Hapus
                                                     <i class="typcn typcn-delete-outline btn-icon-append"></i>
                                                 </button>
                                             </form>
