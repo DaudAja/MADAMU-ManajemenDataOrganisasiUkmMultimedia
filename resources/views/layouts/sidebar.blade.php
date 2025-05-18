@@ -74,18 +74,25 @@
 
     {{-- UMUM - LOGOUT --}}
     <li class="nav-item">
-      <a class="nav-link" href="{{ url('/login') }}">
-        <i class="typcn typcn-power-outline menu-icon"></i>
-        <span class="menu-title">Logout</span>
-      </a>
+    <form action="/logout" method="POST" onsubmit="return confirm('Apakah kamu yakin ingin logout?')">
+        @csrf
+        @method("POST")
+            <button type="submit" class="nav-link d-flex align-items-center" style="background: none; border: none; padding-left: 0,97rem; width: 100%; text-align: left;">
+            <i class="typcn typcn-power-outline menu-icon me-2"></i>
+            <span class="menu-title">Logout</span>
+            </button>
+        </form>
     </li>
 
+
     {{-- ROLE INFO --}}
-    <li class="nav-item mt-auto" style="padding: 1rem; font-size: 0.9rem; color: #6c757d;">
-        <i class="nav-link">
-            <span>login sebagai {{ ucfirst(Auth::user()->role) }}</span>
-        </i>
-    </li>
+    <div style="position: absolute; bottom: 0;">
+        <li class="nav-item mt-auto" style="padding: 1rem; font-size: 0.9rem; color: #6c757d;">
+            <i class="nav-link">
+                <span>login sebagai {{ ucfirst(Auth::user()->role) }}</span>
+            </i>
+        </li>
+    </div>
 
   </ul>
 </nav>

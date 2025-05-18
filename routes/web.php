@@ -28,6 +28,13 @@ Route::get('/', function () {
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
 
+//register
+Route::get('/register', [AuthController::class, 'registerView']);
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+//logout
+Route::post('/logout', [AuthController::class, 'logout']);
+
 //User
 Route::resource('user', UserController::class);
 
