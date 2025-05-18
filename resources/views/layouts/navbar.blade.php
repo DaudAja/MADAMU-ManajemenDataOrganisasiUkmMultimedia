@@ -16,7 +16,7 @@
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
         <a class="nav-link" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-            <span class="nav-profile-name">{{ ucfirst(Auth::user()->role) }}</span>
+            <span class="nav-profile-name">{{ auth()->user()->username }}</span>
           <img src="{{ asset('assets/images/samples/300x300/11.jpg') }}" alt="profile" class="profile-pic" />
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
