@@ -28,6 +28,12 @@
               <form method="POST" action="{{ route('login') }}" class="pt-3">
                 @csrf
                 @method('POST')
+
+                {{-- <div class="form-group mb-3">
+                  <label for="username">Username</label>
+                  <input type="text" name="username" class="form-control form-control-lg" id="username" placeholder="masukkan username" required>
+                </div> --}}
+
                 <div class="form-group mb-3">
                   <label for="email">Email</label>
                   <input type="email" name="email" class="form-control form-control-lg" id="email" placeholder="masukkan email" required>
@@ -43,7 +49,7 @@
                 </div>
 
                 <div class="text-center mt-4">
-                  <small>Belum punya akun? <a href="/register" class="text-danger">Daftar akun</a></small>
+                  <small>Belum punya akun? <a href="/register" class="text-danger">Contact Admin</a></small>
                 </div>
               </form>
             </div>

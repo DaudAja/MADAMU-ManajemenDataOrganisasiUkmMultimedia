@@ -6,12 +6,13 @@ use App\Models\Divisi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class AnggotaController extends Controller
 {
     public function index()
     {
-       $anggota = Anggota::with('divisi')->get();
+       $anggota = Anggota::with('divisi','user')->get();
        return view('lihatAnggota', compact('anggota'));
     }
 
@@ -19,13 +20,36 @@ class AnggotaController extends Controller
     {
        $divisi = Divisi::all(); // ambil semua divisi
        $user = User::all(); // ambil semua divisi
-       return view('tambahAnggota', compact('divisi'));
+
+
+       return view('tambahAnggota', compact('divisi', 'user'));
     }
 
     public function store(Request $request)
     {
-        Anggota::create($request->all());
-        return redirect()->route('lihatAnggota');
+        $request->validate([
+            'username' => 'required|unique:users,username',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed',
+            'nama_lengkap' => 'required',
+            'alamat' => 'required',
+            'no_hp' => 'required',
+            'divisi_id' => 'required|exists:divisi,id',
+        ]);
+
+        $user = new User();
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        $user->anggota()->create([
+            'nama_lengkap' => $request->nama_lengkap,
+            'alamat' => $request->alamat,
+            'no_hp' => $request->no_hp,
+            'divisi_id' => $request->divisi_id,]);
+
+        return redirect()->route('anggota.index');
     }
 
     public function show()
@@ -40,7 +64,6 @@ class AnggotaController extends Controller
         $user = User::all();
         return view('editAnggota', compact('anggota', 'divisi', 'user'));
     }
-
     public function update(Request $request, string $id)
     {
         $request->validate([
@@ -63,7 +86,11 @@ class AnggotaController extends Controller
 
     public function destroy(string $id)
     {
-        Anggota::destroy($id);
-        return back();
+    $anggota = Anggota::findOrFail($id);
+    $anggota->user()->delete(); // jika ingin hapus user-nya juga
+    $anggota->delete();
+
+    return back();
     }
+
 }

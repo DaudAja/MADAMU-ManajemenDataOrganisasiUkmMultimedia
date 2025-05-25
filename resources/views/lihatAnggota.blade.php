@@ -8,13 +8,13 @@
         </div>
     </div>
 
-    {{-- <div class="row mb-3">
-        <div class="col-md-12 d-flex justify-content-end">
+    <div class="row mb-3">
+        <div class="col-md-12 d-flex justify-content-start">
             <a href="{{ route('anggota.create') }}" class="btn btn-outline-success">
                 <i class="typcn typcn-plus"></i> Tambah Anggota
             </a>
         </div>
-    </div> --}}
+    </div>
 
     <div class="row">
         <div class="col-md-12">

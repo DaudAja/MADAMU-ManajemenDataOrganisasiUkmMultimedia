@@ -26,10 +26,10 @@
                       <input type="email" class="form-control" id="email" placeholder="email"  name="email">
                     </div>
 
-                    {{-- <div class="form-group">
+                    <div class="form-group">
                       <label for="email">Password</label>
                       <input type="text" class="form-control" id="password" placeholder="password" name="password">
-                    </div> --}}
+                    </div>
 
                     <div class="form-group">
                         <label>Role</label>
@@ -50,5 +50,5 @@
               </div>
             </div>
           </div>
-          
+
 @endsection

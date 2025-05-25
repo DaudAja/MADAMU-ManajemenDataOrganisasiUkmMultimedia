@@ -8,13 +8,13 @@
         </div>
     </div>
 
-    <div class="row mb-3">
+    {{-- <div class="row mb-3">
         <div class="col-md-12 d-flex justify-content-start">
             <a href="{{ route('user.create') }}" class="btn btn-outline-success">
                 <i class="typcn typcn-plus"></i> Tambah Pengguna
             </a>
         </div>
-    </div>
+    </div> --}}
 
     <div class="row">
         <div class="col-md-12">

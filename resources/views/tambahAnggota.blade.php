@@ -1,4 +1,4 @@
-{{-- @extends('layouts.app')
+@extends('layouts.app')
 
 
 @section('content')
@@ -13,27 +13,52 @@
                 <div class="card-body">
                   <h4 class="card-title">Form Tambah anggota</h4>
 
-                  <form class="forms-sample" action="{{ route('anggota.store') }}" method="POST">
+                                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form class="forms-sample" action="{{ route('anggota.store') }}" method="POST">
                   @csrf
-                    <div class="form-group">
-                        <label for="nidn">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="nama pengguna" name="username">
-                    </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="username" required>
+                </div>
 
-                    <div class="form-group">
-                        <label for="nidn">Nama Lengkap</label>
-                        <input type="text" class="form-control" id="nama_lengkap" placeholder="nama lengkap" name="nama_lengkap">
-                    </div>
+                <div class="form-group">
+                    <label for="nama">Nama lengkap</label>
+                    <input type="text" name="nama_lengkap" id="nama_lengkap" class="form-control" placeholder="nama_lengkap" required>
+                </div>
 
-                    <div class="form-group">
-                      <label for="exampleInputName1">Alamat</label>
-                      <input type="text" class="form-control" id="alamat" placeholder="alamat"  name="alamat">
-                    </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="email" required>
+                </div>
 
-                    <div class="form-group">
-                      <label for="email">Nomor Telepon</label>
-                      <input type="text" class="form-control" id="no_hp" placeholder="no handphone" name="no_hp">
-                    </div>
+                <div class="form-group">
+                    <label for="alamat">Alamat</label>
+                    <input type="text" name="alamat" id="alamat" class="form-control" placeholder="alamat" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="no_hp">Nomor handphone</label>
+                    <input type="text" name="no_hp" id="no_hp" class="form-control" placeholder="no_hp" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password_confirmation">Konfirmasi Password</label>
+                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Ulangi password" required>
+                </div>
 
                     <div class="form-group">
                         <label for="divisi_id">Divisi</label>
@@ -44,7 +69,6 @@
                             @endforeach
                         </select>
                     </div>
-
 
                     <div class="mt-3">
                     <button type="submit" class="btn btn-success me-2">Simpan</button>
@@ -57,4 +81,4 @@
               </div>
             </div>
           </div>
-@endsection --}}
+@endsection

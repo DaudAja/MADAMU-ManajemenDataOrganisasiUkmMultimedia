@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -51,8 +51,23 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="nama">Nama lengkap</label>
+                    <input type="text" name="nama_lengkap" id="nama_lengkap" class="form-control form-control-lg" placeholder="nama_lengkap" required>
+                </div>
+
+                <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" class="form-control form-control-lg" placeholder="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="alamat">Alamat</label>
+                    <input type="text" name="alamat" id="alamat" class="form-control form-control-lg" placeholder="alamat" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="no_hp">Nomor handphone</label>
+                    <input type="number" name="no_hp" id="no_hp" class="form-control form-control-lg" placeholder="no_hp" required>
                 </div>
 
                 <div class="form-group">
@@ -65,6 +80,17 @@
                     <input type="password" name="password_confirmation" id="password_confirmation" class="form-control form-control-lg" placeholder="Ulangi password" required>
                 </div>
 
+                <div class="form-group">
+                    <label for="divisi">Divisi</label>
+                    <select name="divisi_id" required class="form-control">
+                        <option value="">-- Pilih Divisi --</option>
+                            @foreach($divisi as $dvs)
+                        <option value="{{ $dvs->id }}">{{ $dvs->nama_divisi }}</option>
+                @endforeach
+                </select>
+                </div>
+
+
 
   {{-- <div class="form-group">
     <label for="role">Role</label>
@@ -76,7 +102,7 @@
     </select>
   </div> --}}
 
-                <div class="mt-3 d-grid gap-2">
+                {{-- <div class="mt-3 d-grid gap-2">
                     <button class="btn btn-block btn-danger btn-lg fw-medium auth-form-btn">Simpan</button>
                 </div>
                 </form>
@@ -101,4 +127,4 @@
   <!-- endinject -->
 </body>
 
-</html>
+</html>  --}}
