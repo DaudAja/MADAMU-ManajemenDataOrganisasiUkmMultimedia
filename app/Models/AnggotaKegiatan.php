@@ -4,19 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class AnggotaKegiatan extends pivot
+class AnggotaKegiatan extends Pivot
 {
-    protected $table = 'anggota_kegiatan'; // nama tabel pivot tetap boleh pakai underscore
-    protected $fillable = ['anggota_id', 'kegiatan_id', 'status_hadir', 'catatan'];
+    protected $table = 'anggota_kegiatan';
 
-     public function anggota()
+    protected $fillable = ['anggota_id', 'kegiatan_id'];
+
+    public $timestamps = true;
+
+    public function anggota()
     {
-        return $this->hasMany(Anggota::class);
+        return $this->belongsTo(Anggota::class);
     }
 
     public function kegiatan()
     {
-        return $this->hasMany(Kegiatan::class);
+        return $this->belongsTo(Kegiatan::class);
     }
 }
-

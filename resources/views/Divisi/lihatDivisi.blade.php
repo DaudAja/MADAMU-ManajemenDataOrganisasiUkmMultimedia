@@ -1,17 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <div class="content-wrapper">
     <div class="row">
         <div class="col-xl-6 grid-margin stretch-card flex-column">
-            <h5 class="mb-2 text-titlecase mb-4">Anggota</h5>
+            <h4 class="text-titlecase mb-1">Divisi</h4>
         </div>
     </div>
 
     <div class="row mb-3">
         <div class="col-md-12 d-flex justify-content-start">
-            <a href="{{ route('anggota.create') }}" class="btn btn-outline-success">
-                <i class="typcn typcn-plus"></i> Tambah Anggota
+            <a href="{{ route('divisi.create') }}" class="btn btn-outline-success">
+                <i class="typcn typcn-plus"></i> Tambah Divisi
             </a>
         </div>
     </div>
@@ -24,31 +24,23 @@
                         <thead>
                             <tr>
                                 <th class="ms-5">ID</th>
-                                <th>Nama pengguna</th>
-                                <th>Nama Lengkap</th>
-                                <th>Alamat</th>
-                                <th>Nomor</th>
-                                <th>Divisi</th>
+                                <th>Nama Divisi</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($anggota as $agt)
+                            @foreach ($divisi as $ds)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $agt->user->username ?? 'Belum ada user' }}</td>
-                                    <td>{{ $agt->nama_lengkap }}</td>
-                                    <td>{{ $agt->alamat }}</td>
-                                    <td>{{ $agt->no_hp }}</td>
-                                    <td>{{ $agt->divisi->nama_divisi ?? 'Belum ada divisi' }}</td>
+                                    <td>{{ $ds->nama_divisi }}</td>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <a href="{{ route('anggota.edit', $agt->id) }}"
+                                            <a href="{{ route('divisi.edit', $ds->id) }}"
                                                class="btn btn-success btn-sm btn-icon-text me-3">
                                                 Edit
                                                 <i class="typcn typcn-edit btn-icon-append"></i>
                                             </a>
-                                            <form action="{{ route('anggota.destroy', $agt->id) }}"
+                                            <form action="{{ route('divisi.destroy', $ds->id) }}"
                                                   method="POST"
                                                   onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                                                 @csrf
@@ -65,11 +57,10 @@
                         </tbody>
                     </table>
 
-                    @if($anggota->isEmpty())
-                        <div class="text-center py-3">Tidak ada data anggota.</div>
+                    @if($divisi->isEmpty())
+                        <div class="text-center py-3">Tidak ada data divisi.</div>
                     @endif
                 </div>
-
             </div>
         </div>
     </div>

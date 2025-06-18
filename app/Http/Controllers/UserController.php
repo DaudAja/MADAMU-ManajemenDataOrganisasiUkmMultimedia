@@ -11,30 +11,31 @@ class UserController extends Controller
     public function index()
     {
         $user = User::all();
-        return view('lihatUser', compact('user'));
+        return view('User.lihatUser', compact('user'));
     }
 
     public function create()
     {
-        return view('tambahUser');
+        return view('User.tambahUser');
     }
 
     public function store(Request $request)
     {
         $request['password'] = Hash::make($request->password);
         User::create($request->all());
-        return redirect()->route('lihatUser');
+        return redirect()->route('user.index');
     }
 
     public function show()
     {
-        return view('user.index');
+         $user = User::all();
+        return view('user.index', compact('user'));
     }
 
     public function edit(string $id)
     {
         $user = User::findOrFail($id);
-        return view('editUser', compact('user'));
+        return view('User.editUser', compact('user'));
     }
 
     public function update(Request $request, string $id)
@@ -42,22 +43,20 @@ class UserController extends Controller
         $request->validate([
         'username' => 'required',
         'email' => 'required|email',
-        'password' => 'nullable|string|min:6',
+        'password' => 'nullable|string|min:3',
         'role' => 'required|in:admin,ketua,anggota'
     ]);
 
         $user = User::findOrFail($id);
         $user->username = $request->username;
         $user->email = $request->email;
-
-        if ($request->filled('password')) {
-        $user->password = Hash::make($request->password);
-        }
-
+        // if ($request->filled('password')) {
+        // $user->password = Hash::make($request->password);
+        // }
         $user->role = $request->role;
         $user->save();
 
-        return redirect()->route('user.index')->with('berhasil', 'Data berhasil diperbarui');
+        return redirect()->route('user.index')->with('success', 'Data berhasil diperbarui');
     }
 
 

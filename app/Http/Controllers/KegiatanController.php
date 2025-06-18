@@ -2,20 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Kegiatan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class KegiatanController extends Controller
 {
+
+    public function kegiatanku()
+    {
+        $user = Auth::user();
+        $anggota = $user->anggota; // pastikan relasi user -> anggota sudah dibuat
+
+        if (!$anggota) {
+            return back()->with('error', 'Data anggota tidak ditemukan.');
+        }
+
+        $kegiatanku = $anggota->kegiatan; // ambil dari relasi belongsToMany di model Anggota
+
+        return view('Kegiatan.lihatkegiatanku', compact('kegiatanku'));
+    }
+
     public function index()
     {
         $kegiatan = Kegiatan::all();
-        return view('lihatKegiatan', compact('kegiatan'));
+        return view('Kegiatan.lihatKegiatan', compact('kegiatan'));
     }
 
     public function create()
     {
-        return view('tambahKegiatan');
+        return view('Kegiatan.tambahKegiatan');
     }
 
     public function store(Request $request)
@@ -27,14 +44,14 @@ class KegiatanController extends Controller
     public function show()
     {
         $kegiatan = Kegiatan::all(); // relasi dimuat
-        return view('lihatKegiatan', compact('kegiatan'));
+        return view('kegiatan.index', compact('kegiatan'));
     }
 
 
     public function edit(string $id)
     {
         $kegiatan = Kegiatan::findOrFail($id);
-        return view('editKegiatan', compact('kegiatan'));
+        return view('Kegiatan.editKegiatan', compact('kegiatan'));
     }
 
     public function update(Request $request, string $id)
@@ -53,10 +70,7 @@ class KegiatanController extends Controller
         $kegiatan->tanggal = $request->tanggal;
         $kegiatan->save();
 
-        // $kegiatan->update($request->only(['nama_kegiatan', 'deskripsi', 'lokasi', 'tanggal']));
-
-        return redirect()->route('kegiatan.index')->with('berhasil', 'data berhasil di perbaharui');
-
+        return redirect()->route('kegiatan.index')->with('success', 'data berhasil di perbaharui');
     }
 
     public function destroy(string $id)

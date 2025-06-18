@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <div class="content-wrapper">
     <div class="row">
         <div class="col-xl-6 grid-margin stretch-card flex-column">
-            <h4 class="mb-2 text-titlecase mb-2">Pengguna</h4>
+            <h4 class="text-titlecase mb-1">Pengguna</h4>
         </div>
     </div>
 
@@ -34,7 +34,7 @@
                         <tbody>
                             @foreach ($user as $us)
                                 <tr>
-                                    <td>{{ $us->id }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $us->username }}</td>
                                     <td>{{ $us->email }}</td>
                                     {{-- <td>{{ $us->password }}</td> --}}

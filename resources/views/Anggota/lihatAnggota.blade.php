@@ -1,20 +1,24 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <div class="content-wrapper">
     <div class="row">
         <div class="col-xl-6 grid-margin stretch-card flex-column">
-            <h5 class="mb-2 text-titlecase mb-4">Kegiatan</h5>
+            <h4 class="text-titlecase mb-1">Anggota</h4>
         </div>
     </div>
 
-     <div class="row mb-3">
+    {{-- @php dd(session()->all()) @endphp --}}
+
+    @if (Auth::user()->role === 'admin')
+    <div class="row mb-3">
         <div class="col-md-12 d-flex justify-content-start">
-            <a href="{{ route('kegiatan.create') }}" class="btn btn-outline-success">
-                <i class="typcn typcn-plus"></i> Tambah Kegiatan
+            <a href="{{ route('anggota.create') }}" class="btn btn-outline-success">
+                <i class="typcn typcn-plus"></i> Tambah Anggota
             </a>
         </div>
     </div>
+    @endif
 
     <div class="row">
         <div class="col-md-12">
@@ -24,33 +28,46 @@
                         <thead>
                             <tr>
                                 <th class="ms-5">ID</th>
-                                {{-- <th>Nama Anggota</th> --}}
-                                <th>Nama kegiatan</th>
-                                <th>Deskripsi</th>
-                                <th>Lokasi</th>
-                                <th>Tanggal</th>
+
+                                @if (Auth::user()->role !== 'ketua')
+                                <th>Nama pengguna</th>
+                                @endif
+
+                                <th>Nama Lengkap</th>
+                                <th>Alamat</th>
+                                {{-- <th>Nomor</th> --}}
+                                <th>Divisi</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($kegiatan as $kg)
+                            @foreach ($anggota as $agt)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    {{-- @foreach ($kg->anggotas as $ang)
-                                    <td>{{ $ang->nama_lengkap }}</td>
-                                    @endforeach --}}
-                                    <td>{{ $kg->nama_kegiatan }}</td>
-                                    <td>{{ $kg->deskripsi }}</td>
-                                    <td>{{ $kg->lokasi }}</td>
-                                    <td>{{ $kg->tanggal }}</td>
+                                    @if (Auth::user()->role !== 'ketua')
+                                        <td>{{ $agt->user->username ?? 'Belum ada user' }}</td>
+                                    @endif
+                                    <td>{{ $agt->nama_lengkap }}</td>
+                                    <td>{{ $agt->alamat }}</td>
+                                    {{-- <td>{{ $agt->no_hp }}</td> --}}
+                                    <td>{{ $agt->divisi->nama_divisi ?? 'Belum ada divisi' }}</td>
                                     <td>
+                                        @if (Auth::user()->role === 'ketua')
+                                            <a href="{{ route('anggota.show', $agt->id) }}"
+                                            class="btn btn-info btn-sm btn-icon-text me-2">
+                                                Lihat
+                                                <i class="typcn typcn-eye btn-icon-append"></i>
+                                            </a>
+                                        @endif
+
+                                        @if (Auth::user()->role === 'admin')
                                         <div class="d-flex align-items-center">
-                                            <a href="{{ route('kegiatan.edit', $kg->id) }}"
+                                            <a href="{{ route('anggota.edit', $agt->id) }}"
                                                class="btn btn-success btn-sm btn-icon-text me-3">
                                                 Edit
                                                 <i class="typcn typcn-edit btn-icon-append"></i>
                                             </a>
-                                            <form action="{{ route('kegiatan.destroy', $kg->id) }}"
+                                            <form action="{{ route('anggota.destroy', $agt->id) }}"
                                                   method="POST"
                                                   onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                                                 @csrf
@@ -61,16 +78,19 @@
                                                 </button>
                                             </form>
                                         </div>
+                                        @endif
+
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
 
-                    @if($kegiatan->isEmpty())
-                        <div class="text-center py-3">Tidak ada data kegiatan.</div>
+                    @if($anggota->isEmpty())
+                        <div class="text-center py-3">Tidak ada data anggota.</div>
                     @endif
                 </div>
+
             </div>
         </div>
     </div>

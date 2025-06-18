@@ -27,7 +27,13 @@
               </div>
               <form method="POST" action="{{ route('login') }}" class="pt-3">
                 @csrf
-                @method('POST')
+                {{-- @if ($errors->any())
+                <ul>
+                    @foreach ($errors->all() as $item )
+                    <li>{{ item }}</li>
+                    @endforeach
+                </ul>
+                @endif --}}
 
                 {{-- <div class="form-group mb-3">
                   <label for="username">Username</label>
@@ -36,7 +42,7 @@
 
                 <div class="form-group mb-3">
                   <label for="email">Email</label>
-                  <input type="email" name="email" class="form-control form-control-lg" id="email" placeholder="masukkan email" required>
+                  <input type="email" name="email" class="form-control form-control-lg" id="email" placeholder="masukkan email" required value="{{ old('email') }}">
                 </div>
 
                 <div class="form-group mb-4">
@@ -48,9 +54,9 @@
                   <button type="submit" class="btn btn-danger btn-lg fw-bold">MASUK</button>
                 </div>
 
-                <div class="text-center mt-4">
+                {{-- <div class="text-center mt-4">
                   <small>Belum punya akun? <a href="/register" class="text-danger">Contact Admin</a></small>
-                </div>
+                </div> --}}
               </form>
             </div>
           </div>

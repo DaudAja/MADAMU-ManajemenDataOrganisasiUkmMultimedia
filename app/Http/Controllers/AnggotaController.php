@@ -6,6 +6,8 @@ use App\Models\Divisi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AnggotaController extends Controller
@@ -13,7 +15,7 @@ class AnggotaController extends Controller
     public function index()
     {
        $anggota = Anggota::with('divisi','user')->get();
-       return view('lihatAnggota', compact('anggota'));
+       return view('Anggota.lihatAnggota', compact('anggota'));
     }
 
     public function create()
@@ -22,15 +24,19 @@ class AnggotaController extends Controller
        $user = User::all(); // ambil semua divisi
 
 
-       return view('tambahAnggota', compact('divisi', 'user'));
+       return view('Anggota.tambahAnggota', compact('divisi', 'user'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        try {
+
+            DB::beginTransaction();
+
+            $request->validate([
             'username' => 'required|unique:users,username',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:3|confirmed',
             'nama_lengkap' => 'required',
             'alamat' => 'required',
             'no_hp' => 'required',
@@ -49,20 +55,38 @@ class AnggotaController extends Controller
             'no_hp' => $request->no_hp,
             'divisi_id' => $request->divisi_id,]);
 
-        return redirect()->route('anggota.index');
+        DB::commit();
+        // dd(session());
+        return redirect()->route('anggota.index')->with('success', 'Data berhasil ditambahkan');
+
+
+        } catch (\Throwable $th) {
+
+            DB::rollBack();
+
+            return redirect()->route('anggota.index')->withErrors('error', 'Gagal menyimpan data.');
+
+        }
+
     }
 
-    public function show()
+    public function show($id)
     {
-        return view('anggota.index');
+
+    // Ambil data anggota beserta relasi user dan divisi
+    $anggota = Anggota::with('user', 'divisi')->findOrFail($id);
+
+    // Tampilkan view profil anggota
+    return view('Anggota.showAnggota', compact('anggota'));
+
     }
 
     public function edit(string $id)
     {
         $anggota = Anggota::findOrFail($id);
-        $divisi = Divisi::all(); // Supaya dropdown divisi tersedia
+        $divisi = Divisi::all();
         $user = User::all();
-        return view('editAnggota', compact('anggota', 'divisi', 'user'));
+        return view('Anggota.editAnggota', compact('anggota', 'divisi', 'user'));
     }
     public function update(Request $request, string $id)
     {
@@ -81,16 +105,16 @@ class AnggotaController extends Controller
         $anggota->save();
 
 
-        return redirect()->route('anggota.index')->with('berhasil', 'Data berhasil diperbaharui');
+        return redirect()->route('anggota.index')->with('success', 'Data berhasil diperbaharui');
     }
 
     public function destroy(string $id)
     {
-    $anggota = Anggota::findOrFail($id);
-    $anggota->user()->delete(); // jika ingin hapus user-nya juga
-    $anggota->delete();
+        $anggota = Anggota::findOrFail($id);
+        $anggota->user()->delete();
+        $anggota->delete();
 
-    return back();
+        return back();
     }
 
 }

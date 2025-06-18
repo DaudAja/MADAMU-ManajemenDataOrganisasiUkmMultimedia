@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Anggota;
 use App\Models\Divisi;
 use App\Models\User;
@@ -20,7 +21,7 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
-          $credentials = $request->validate([
+        $credentials = $request->validate([
             // 'username' => ['required'],
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -31,13 +32,37 @@ class AuthController extends Controller
 
             // dd(Auth::user());
 
-            return redirect()->intended('dashboard');
+            return redirect()->intended('/dashboard');
         }
 
         return back()->withErrors([
-            'username' => 'Terjadi kesalahan, periksa kembali username atau password anda.',
-        ])->onlyInput('username');
+            'email' => 'Terjadi kesalahan, periksa kembali username atau password anda.',
+        ])->onlyInput('email');
     }
+
+
+    // $request->validate([
+    //     // 'username' => ['required'],
+    //     'email' => ['required', 'email'],
+    //     'password' => ['required'],
+    // ]);
+    //     // dd($request->all());
+
+    //     $infologin = [
+    //         'email' => $request->email,
+    //         'password' => $request->password,
+    //     ];
+
+    //     if (Auth::attempt($infologin)) {
+    //         echo "berhasil";
+    //         $request->session()->regenerate();
+    //         // dd(Auth::user());
+    //         return redirect()->intended('dashboard');
+    //     }else {
+    //         return back()->withErrors('email dan password salah')->withInput();
+    //     }
+
+    // }
 
     // public function registerView()
     // {

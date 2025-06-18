@@ -1,10 +1,18 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <div class="content-wrapper">
     <div class="row">
         <div class="col-xl-6 grid-margin stretch-card flex-column">
-            <h5 class="mb-2 text-titlecase mb-4">Anggota Kegiatan</h5>
+            <h4 class="text-titlecase mb-1">Anggota Kegiatan</h4>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-12 d-flex justify-content-start">
+            <a href="{{ route('AnggotaKegiatan.create') }}" class="btn btn-outline-success">
+                <i class="typcn typcn-plus"></i> Tambah Anggota Kegiatan
+            </a>
         </div>
     </div>
 
@@ -16,37 +24,26 @@
                         <thead>
                             <tr>
                                 <th class="ms-5">ID</th>
-                                <th>Anggota Id</th>
-                                <th>Kegiatan Id</th>
-                                <th>Status Kehadiran</th>
-                                <th>catatan</th>
+                                <th>Nama Anggota </th>
+                                <th>Nama Kegiatan </th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($anggotakegiatan as $akg)
+                            @foreach ($anggotaKegiatanList as $akg)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $akg->anggota_id }}</td>
-                                    <td>{{ $akg->kegiatan_id }}</td>
-                                    <td>{{ $akg->status_hadir }}</td>
-                                    <td>{{ $akg->catatan }}</td>
+                                    <td>{{ $akg->anggota->nama_lengkap ?? 'Belum ada data'}}</td>
+                                    <td>{{ $akg->kegiatan->nama_kegiatan ?? 'Belum ada data'}}</td>
                                     <td>
-                                        <div class="d-flex align-items-center">
-                                            <a href=" "
-                                               class="btn btn-success btn-sm btn-icon-text me-3">
-                                                Edit
-                                                <i class="typcn typcn-edit btn-icon-append"></i>
-                                            </a>
-
-                                            <form action=" "
-                                                  method="POST"
-                                                  onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')">
+                                            <form action="{{ route('AnggotaKegiatan.destroy', $akg->id) }}"
+                                                method="POST"
+                                                onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm btn-icon-text">
-                                                    Delete
-                                                    <i class="typcn typcn-delete-outline btn-icon-append"></i>
+                                                Hapus
+                                                <i class="typcn typcn-delete-outline btn-icon-append"></i>
                                                 </button>
                                             </form>
                                         </div>
@@ -56,7 +53,7 @@
                         </tbody>
                     </table>
 
-                    @if($anggotakegiatan->isEmpty())
+                    @if($anggotaKegiatanList->isEmpty())
                         <div class="text-center py-3">Tidak ada data anggota.</div>
                     @endif
                 </div>

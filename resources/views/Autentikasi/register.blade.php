@@ -90,8 +90,6 @@
                 </select>
                 </div>
 
-
-
   {{-- <div class="form-group">
     <label for="role">Role</label>
     <select name="role" id="role" class="form-control form-control-lg" required>
@@ -127,4 +125,4 @@
   <!-- endinject -->
 </body>
 
-</html>  --}}
+</html> --}}

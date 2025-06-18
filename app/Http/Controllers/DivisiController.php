@@ -11,18 +11,18 @@ class DivisiController extends Controller
     public function index()
     {
         $divisi = Divisi::all();
-        return view('lihatDivisi', compact('divisi'));
+        return view('Divisi.lihatDivisi', compact('divisi'));
     }
 
     public function create()
     {
-        return view('tambahDivisi');
+        return view('Divisi.tambahDivisi');
     }
 
     public function store(Request $request)
     {
         Divisi::create($request->all());
-        return redirect()->route('lihatDivisi');
+        return redirect()->route('divisi.index');
     }
 
     public function show()
@@ -33,7 +33,7 @@ class DivisiController extends Controller
     public function edit($id)
     {
         $divisi = Divisi::findOrFail($id);
-        return view('editDivisi', compact('divisi'));
+        return view('Divisi.editDivisi', compact('divisi'));
     }
 
     public function update(Request $request, string $id)
@@ -46,7 +46,7 @@ class DivisiController extends Controller
         $divisi->nama_divisi = $request->nama_divisi;
         $divisi->save();
 
-        return redirect()->route('divisi.index')->with('berhasil', 'data berhasil di perbaharui');
+        return redirect()->route('divisi.index')->with('success', 'data berhasil di perbaharui');
     }
 
     public function destroy(string $id)

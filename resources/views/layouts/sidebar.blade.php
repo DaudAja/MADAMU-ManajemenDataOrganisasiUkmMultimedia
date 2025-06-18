@@ -36,6 +36,13 @@
           <span class="menu-title">Manajemen Kegiatan</span>
         </a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('AnggotaKegiatan') }}">
+          <i class="typcn typcn-calendar-outline menu-icon"></i>
+          <span class="menu-title">Anggota Kegiatan</span>
+        </a>
+      </li>
     @endif
 
     {{-- KETUA DIVISI --}}
@@ -43,14 +50,14 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ url('anggota') }}">
           <i class="typcn typcn-group menu-icon"></i>
-          <span class="menu-title">Anggota Divisi</span>
+          <span class="menu-title">Anggota</span>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{{ url('kegiatan') }}">
           <i class="typcn typcn-calendar-outline menu-icon"></i>
-          <span class="menu-title">Kegiatan Divisi</span>
+          <span class="menu-title">Daftar Kegiatan</span>
         </a>
       </li>
     @endif
@@ -58,16 +65,23 @@
     {{-- ANGGOTA --}}
     @if(Auth::user()->role === 'anggota')
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('profil') }}">
+        <a class="nav-link" href="{{ route('profile.show',['id'=>Auth::user()->id]) }}">
           <i class="typcn typcn-user menu-icon"></i>
           <span class="menu-title">Data Saya</span>
         </a>
       </li>
 
       <li class="nav-item">
+        <a class="nav-link" href="{{ route('kegiatan.kegiatanku') }}">
+          <i class="typcn typcn-calendar-outline menu-icon"></i>
+          <span class="menu-title">Kegiatanku</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link" href="{{ url('kegiatan') }}">
           <i class="typcn typcn-calendar-outline menu-icon"></i>
-          <span class="menu-title">Kegiatan</span>
+          <span class="menu-title">Daftar Kegiatan</span>
         </a>
       </li>
     @endif

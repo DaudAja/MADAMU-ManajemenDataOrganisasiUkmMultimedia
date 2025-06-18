@@ -13,10 +13,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('anggota_id')->constrained('anggota')->onDelete('cascade');
             $table->foreignId('kegiatan_id')->constrained('kegiatan')->onDelete('cascade');
-            $table->enum('status_hadir',['Hadir', 'Izin', 'Alpha'])->default('Izin');
-            $table->text('catatan');
             $table->timestamps();
         });
+
     }
 
 

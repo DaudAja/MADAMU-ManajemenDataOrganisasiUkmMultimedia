@@ -11,12 +11,10 @@ class Kegiatan extends Model
     protected $table = 'kegiatan';
     protected $fillable = ['nama_kegiatan', 'deskripsi', 'lokasi', 'tanggal'];
 
-    public function anggotas()
+    public function anggota()
     {
-     return $this->belongsToMany(Anggota::class, 'anggota_kegiatan')
+    return $this->belongsToMany(Anggota::class, 'anggota_kegiatan')
                 ->withPivot('status_hadir', 'catatan')
                 ->withTimestamps();
     }
-
-
 }
