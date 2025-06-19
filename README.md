@@ -18,12 +18,12 @@
 | ----------- | ----------- |
 | Kelola User | CRUD user (admin, ketua, anggota), ubah role |
 | Kelola Anggota | CRUD anggota: nama, alamat, no HP, divisi |
-| Kelola Divisi | Tambah/edit/hapus divisi organisasi |
-| Kelola Kegiatan | Tambah/edit/hapus kegiatan organisasi |
-| Kelola Anggota Kegiatan | Tambah/edit/hapus Anggota Kegiatan |
+| Kelola Divisi | CRUD divisi organisasi |
+| Kelola Kegiatan | CRUD kegiatan organisasi |
+| Kelola Anggota Kegiatan | CRUD Anggota Kegiatan |
 | Lihat Semua Data | Admin dapat melihat seluruh data user, anggota, dan divisi |
 
-### 2. Ketua Divisi
+### 2. Ketua
 **Fokus:** Melihat dan memantau anggota organisasi
 | Fitur | Deskripsi |
 | ----------- | ----------- |
