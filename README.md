@@ -19,14 +19,18 @@
 | Kelola User | CRUD user (admin, ketua, anggota), ubah role |
 | Kelola Anggota | CRUD anggota: nama, alamat, no HP, divisi |
 | Kelola Divisi | Tambah/edit/hapus divisi organisasi |
+| Kelola Kegiatan | Tambah/edit/hapus kegiatan organisasi |
+| Kelola Anggota Kegiatan | Tambah/edit/hapus Anggota Kegiatan |
 | Lihat Semua Data | Admin dapat melihat seluruh data user, anggota, dan divisi |
 
 ### 2. Ketua Divisi
-**Fokus:** Melihat dan memantau anggota divisi
+**Fokus:** Melihat dan memantau anggota organisasi
 | Fitur | Deskripsi |
 | ----------- | ----------- |
-| Lihat Daftar Anggota | Menampilkan anggota dalam divisi |
+| Lihat Daftar Anggota | Menampilkan anggota dalam organisasi |
 | Lihat Detail Anggota | Lihat biodata lengkap anggota |
+| Lihat Daftar Kegiatan | Lihat kegiatan |
+| Kelola Daftar Kegiatan | edit kegiatan |
 
 ### 3. Anggota
 **Fokus:** Melihat dan memperbarui informasi pribadi
@@ -91,8 +95,6 @@
 | id | INT (PK) | Primary key |
 | anggota\_id | INT (FK) | Foreign key Relasi ke `anggota.id` |
 | kegiatan\_id | INT (FK) | Foreign key Relasi ke `kegiatan.id` |
-| status_kehadiran | ENUM('Hadir','Izin','Alpha') | kehadiran |
-| catatan | TEXT | Opsional (misalnya izin) |
 | created\_at | TIMESTAMP | Waktu dibuat |
 | updated\_at | TIMESTAMP | Waktu update terakhir |
 
